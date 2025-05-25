@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2>Bienvenido a la página de inicio</h2>
+    <p>Esta es una vista que hereda de la plantilla base.</p>
+    <div>
+        {% if user.is_authenticated %}
+            Bienvenido, {{ user.username }} -> <a href="{% url 'home_auth' %}">Home auth</a> |
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-outline-primary">Entrar</a>
+        {% endif %}
+    </div>
+{% endblock %}

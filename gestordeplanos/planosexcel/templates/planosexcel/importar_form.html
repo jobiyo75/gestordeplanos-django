@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Importar Planos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Importar Planos desde Excel</h2>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% elif cantidad %}
+        <div class="alert alert-success">{{ cantidad }} planos importados correctamente.</div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="mt-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="archivo" class="form-label">Selecciona el archivo Excel (.xlsx):</label>
+            <input type="file" name="archivo" id="archivo" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Importar</button>
+    </form>
+</div>
+{% endblock %}

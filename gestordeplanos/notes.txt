@@ -1,0 +1,241 @@
+# NOTES.TXT
+
+- Creación del entorno virtual
+terminal> python -m venv nombre_del_entorno
+
+- Activación del entorno virtual
+terminal> .\nombre_del_entorno\Scripts\Activate.ps1
+
+- Desde terminal (VSC)
+terminal> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+# despues ejecutar: terminal> .\venv\Scripts\Activate.ps1
+
+- Instalar django en venv
+(venv)> pip install django
+
+- Guardar los paquetes
+(venv)> pip freeze > requirements.txt
+
+- Si quisiera reinstalar los paquetes
+(venv)> pip install -r requirements.txt
+
+- Crear nuevo proyecto de django
+(venv)> django-admin startproject gestordeplanos
+
+- Crear nueva app core
+(venv)> python manage.py startapp core
+
+- Ejecutar el servidor
+(venv)> python manage.py runserver
+
+- Añade la app core a gestordeplanos.setting.py, crea las core.urls y las core.views
+
+- Crea la migraciones de la app core
+(venv)> python manage.py makemigrations core
+
+- Migra las migraciones de la app core
+(venv)> python manage.py migrate core
+
+- Crear superusuario
+(venv)> python manage.py createsuperuser
+user: jobiyo
+password: *****1234
+
+- Crear paquete llamado funciones (__ini__.py)
+gestordeplanos/funciones/mis_funciones.py
+# from mis_funciones.py import leer_excel()
+from funciones.mis_funciones import leer_excel
+
+
+- Ejecutar el servidor como servirdor web (para otros mienbros de la red)
+(venv)> python manage.py runserver 0.0.0.0:8000
+
+
+---------------------------
+# NUEVA APP PROYECTOS
+---------------------------
+
+- Crear nueva app "proyectos"
+(venv)> python manage.py startapp proyectos
+
+- Registrar la app en gestordeplanos.settings.py
+INSTALLED_APPS = [
+    ...
+    'proyectos',
+]
+
+- Crear el modelo en proyectos/models.py
+from django.db import models
+class Proyecto(models.Model):
+    codigo = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    ruta = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.codigo} - {self.nombre}"
+
+- Crear migraciones
+(venv)> python manage.py makemigrations proyectos
+
+- Hacer las migraciones
+(venv)> python manage.py migrate
+
+- Crear la vista en proyectos/views.py
+
+- Crear la url en proyectos/urls.py
+
+- Incluir el proyectos/urls.py en gestordeplanos/urls.py
+
+- Crear proyectos desde admin.py
+
+
+---------------------------------------
+CREAR NUEVA APP PLANOSEXCELL
+---------------------------------------
+- Crear nueva app planosexcel
+(django2)> python manage.py startapp planosexcel
+
+- Añadir la nueva app a gestordeplanos/settings.py
+INSTALLED_APPS = [
+    ...
+    'planosexcel',
+]
+
+- Crear el modelo planosexcel/models.py
+
+- Crea la migraciones de la app planosrevit
+(django2)> python manage.py makemigrations planosexcel
+
+- Migra las migraciones
+(django2)> python manage.py migrate
+
+
+- Crear la vista planosexcel/.views.py
+
+- Crear las urls planosexcel/urls.py
+
+- Añadir las urls a gestordeplanos/urls.py
+
+- Registra el modelo en admin en planosexcel/admin.py
+
+
+---------------------------------------
+CREAR NUEVA APP PLANOSREVIT
+---------------------------------------
+- Crear nueva app planosrevit
+(venv)> python manage.py startapp planosrevit
+
+- Añadir la nueva app a gestordeplanos/settings.py
+INSTALLED_APPS = [
+    ...
+    'planosrevit',
+]
+
+- Crear el modelo planosrevit/models.py
+
+- Crea la migraciones de la app planosrevit
+(venv)> python manage.py makemigrations planosrevit
+
+- Migra las migraciones
+(venv)> python manage.py migrate
+
+- Crear el formulario en planosrevit/forms.py
+
+- Crear la vista planosrevit/views.py
+
+- Crear las urls planosrevit/urls.py
+
+- Añadir las urls a gestordeplanos/urls.py
+
+- Crear la plantilla importar_form.html
+
+- Crear la plantilla lista_panos_revit.html
+
+- Registra el modelo en admin en planosrevit/admin.py
+
+
+
+
+---------------------------------------
+CREAR REPOSITORIO GITHUB
+---------------------------------------
+
+- Probar la instalacion de git
+terminal> git --version
+
+- Clonar repositorio
+terminal> git clone https://github.com/jobiyo75/gestordeplanos-prueba.git
+# Crea una carpeta en la ruta del terminal activa (gestordeplanos-prueba)
+
+- Copiar carpeta gestordeplanos a la carpeta clonada gestordeplanos-prueba
+
+- Desde la carpeta gestordeplanos-prueba (cd gestordeplanos-prueba) añadimos los archivos con:
+termianl> git add .
+
+- Hacemos el commit
+terminal> git commit -m "Añadimos proyecto"
+
+- configuramos email
+terminal> git config --global user.email "jobiyo@gmail.com"
+
+- configuramos name
+terminal> git config --global user.name "jobiyo75"
+
+- actualizamos la rama maestra del repositorio
+terminal> git push -u origin master
+
+# Repositorio webempresa curso: https://github.com/hektorprofe/webempresa
+
+
+
+---------------------------------------
+CREAR WEB jobiyo.pythonanywhere.com
+---------------------------------------
+
+- registro pythonanywhere.com
+- crear entorno virtual -> vamos a console -> Bash
+bash> mkvirtualenv --python=python3.11 django2
+
+- Se activa con "workon django2" y se desactiva con "deactivate"
+(django2)>
+
+- creamos el archivo requirements.txt con los paquetes y sus versiones
+Pillow==5.0.0
+django==5.2.1
+django-ckeditor==6.7.2
+
+- Clonamos el repositorio
+(django2)> git clone https://github.com/jobiyo75/gestordeplanos-prueba.git
+
+- instalar requirements.txt
+(django2)~/gestordeplanos-prueba> pip install -r requirements.txt
+
+- Si falla instalamos los paquetes necesario
+(django2)~/gestordeplanos-prueba> pip install django
+(django2)~/gestordeplanos-prueba> pip install pandas
+...
+
+- Check manage.py
+(django2)~/gestordeplanos-prueba> python manage.py check --deploy
+WARNINGS:
+(security.W018) You should not have DEBUG set to True in deployment.
+(security.W020) ALLOWED_HOSTS must not be empty in deployment
+
+- editar el ficehro gestordeplanos/settings.py
+DEBUG = False
+ALLOWED_HOSTS = ['jobiyo.pythonanywhere.com']
+
+
+- añadir nueva app para mantener el servidor en marcha
+desde la web pythonanywhere
+
+****
+https://hektorprofe.github.io/django/produccion/desplegar-proyecto-prueba/
+****
+
+
+- ahora ya podemos ejecutar
+(django2)~/gestordeplanos-prueba> python manage.py runserver
+
+

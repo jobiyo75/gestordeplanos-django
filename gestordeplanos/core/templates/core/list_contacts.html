@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Mensajes recibidos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Mensajes recibidos</h2>
+
+    {% if contactos %}
+        <div class="row row-cols-1 g-3">
+            {% for c in contactos %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">{{ c.nombre }}</h5>
+                            <h6 class="card-subtitle text-muted mb-2">{{ c.email }}</h6>
+                            <p class="card-text">{{ c.mensaje }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">No hay mensajes aún.</div>
+    {% endif %}
+</div>
+{% endblock %}
+

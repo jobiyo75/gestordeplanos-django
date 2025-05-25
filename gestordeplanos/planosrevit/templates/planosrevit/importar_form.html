@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Importar Planos Revit{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Importar Planos desde CSV</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Importar</button>
+    </form>
+
+    {% if mensaje %}
+        <div class="alert alert-success mt-3">{{ mensaje }}</div>
+    {% endif %}
+</div>
+{% endblock %}

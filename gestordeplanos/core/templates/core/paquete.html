@@ -1,0 +1,9 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Filtrado: {{paquete}} {% endblock %}
+
+{% block content %}
+    <h2>Resultados para: "{{ paquete }}" ({{ num_filas }} sheet{{ num_filas|pluralize }})</h2>
+    <div>{{ table|safe }}</div>
+    <p><a href="{% url 'home_auth' %}">← home_auth</a></p>
+{% endblock %}

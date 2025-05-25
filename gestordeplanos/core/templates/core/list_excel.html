@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+<!--block title-->
+{% block title %}Listado Planos Excel{% endblock %}
+
+<!--block content-->
+{% block content %}
+    <h3>Listado planos Excel</h3>
+    <p>Archivo: ./data/Libro1.xlsx</p>
+    <p>Número de planos: {{ num_rows }}</p>
+    <!--valores_paquete-->
+    <ul>
+        {% for paquete, cantidad in valores_paquete.items %}
+            <!--<p>ViewSubgroup: {{ viewsubgroup }} ({{ cantidad }} sheets)</p>-->
+            <li><a href="{% url 'filtrar_paquete' paquete %}" class="enlace-paquete">{{ paquete }}</a> ({{ cantidad }} sheets)</li>
+            {% empty %}
+            <p>No hay paquetes disponibles.</p>
+        {% endfor %}
+    </ul>
+    
+    <div>
+        <!--{{ lista|safe }}-->
+    </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+Pillow
+django
+django-ckeditor
+django-import-export

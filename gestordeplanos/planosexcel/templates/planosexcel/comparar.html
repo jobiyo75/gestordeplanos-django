@@ -1,0 +1,26 @@
+<!--EXTENDS BASE.HTML-->
+{% extends 'core/base.html' %}
+
+<!--CARGAR STATIC-->
+{% load static %}
+
+{% block title %}Comparación de planos{% endblock %}
+
+{% block content %}
+  <h2>Comparación de planos</h2>
+
+  <p>Total planos en Excel: {{ total_excel }}</p>
+  <p>Total sheets en Revit: {{ total_revit }}</p>
+  <p><strong>No coinciden ({{ total_no_coinciden }}):</strong></p>
+
+  <hr>
+  {% if no_coinciden %}
+    <ul>
+      {% for numero in no_coinciden %}
+        <li>{{ numero }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>¡Todos los planos de Excel están presentes en Revit!</p>
+  {% endif %}
+{% endblock %}

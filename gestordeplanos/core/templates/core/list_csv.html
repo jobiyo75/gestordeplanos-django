@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h3>Listado planos Revit - SHOP DRAWINGS</h3>
+    <p>Archivo: ./data/sheetlist.csv</p>
+    <p>Número de sheets: {{ num_rows }}</p>
+    <!--valores_viewsubgroup-->
+    <ul>
+        {% for viewsubgroup, cantidad in valores_viewsubgroup.items %}
+            <!--<p>ViewSubgroup: {{ viewsubgroup }} ({{ cantidad }} sheets)</p>-->
+            <li><a href="{% url 'filtrar_viewsubgroup' viewsubgroup %}" class="enlace-paquete">{{ viewsubgroup }}</a> ({{ cantidad }} sheets)</li>
+            {% empty %}
+            <p>No hay ViewSubgroup disponibles.</p>
+        {% endfor %}
+    </ul>
+    
+    <div>
+        <!--{{ lista|safe }}-->
+    </div>
+{% endblock %}

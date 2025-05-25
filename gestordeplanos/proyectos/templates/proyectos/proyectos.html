@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Listado de Proyectos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Listado de Proyectos</h2>
+    <hr>
+
+    {% if proyectos %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Ruta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in proyectos %}
+                    <tr>
+                        <td><b>{{ p.codigo }}</b></td>
+                        <td>{{ p.nombre }}</td>
+                        <td>{{ p.descripcion }}</td>
+                        <td>{{ p.ruta }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info text-center">No hay proyectos aún.</div>
+    {% endif %}
+</div>
+{% endblock %}

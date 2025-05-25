@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Cargar planos desde Excel{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Cargar planos desde archivo Excel</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="file" name="archivo" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Cargar</button>
+    </form>
+
+    {% if datos %}
+        <h4 class="mt-4">Datos cargados:</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    {% for key in datos.0.keys %}
+                        <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in datos %}
+                    <tr>
+                        {% for valor in fila.values %}
+                            <td>{{ valor }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

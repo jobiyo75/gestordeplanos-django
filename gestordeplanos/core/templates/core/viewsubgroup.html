@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+<!--
+return render(request, 'core/viewsubgroup.html', {
+        'table': table_html,
+        'viewsubgroup': nombre_viewsubgroup,
+        'num_filas': len(df_filtrado)
+-->
+
+{% block title %}Filtrado: {{viewsubgroup}} {% endblock %}
+
+{% block content %}
+    <h2>Resultados para: "{{ viewsubgroup }}" ({{ num_filas }} sheet{{ num_filas|pluralize }})</h2>
+    <div>{{ table|safe }}</div>
+    <p><a href="{% url 'home_auth' %}">← home_auth</a></p>
+{% endblock %}

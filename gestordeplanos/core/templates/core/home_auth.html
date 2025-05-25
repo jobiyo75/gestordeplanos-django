@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home auth{% endblock %}
+
+{% block content %}
+    <h2>Bienvenido!!</h2>
+    {% if user.is_authenticated %}
+        <p>Estás registrado como: <b>{{ user.username }}</b></p>
+    {% else %}
+        <p>No estás registrado!</p>
+    {% endif %}
+
+    <hr>
+    <h3>Planos Excel</h3>
+    <p><a class="btn btn-outline-primary" href="{% url 'importar_planos_excel' %}">Importar planos</a> (Importar listado planos desde excel)</p>
+    <p><a class="btn btn-outline-primary" href="{% url 'lista_planos_excel' %}">Lista planos</a> (Visualizar listado planos excel)</p>
+
+    <hr>
+    <h3>Planos Revit</h3>
+    <p><a class="btn btn-outline-primary" href="{% url 'importar_planos_revit' %}">Importar planos</a> (Importar listado planos desde csv)</p>
+    <p><a class="btn btn-outline-primary" href="{% url 'lista_planos_revit' %}">Lista planos</a> (Visualizar listado planos revit)</p>
+
+    <hr>
+    <h3>Planos EXCEL vs Revit</h3>
+    <p><a class="btn btn-outline-primary" href="{% url 'comparar_planos' %}">Comparar planos</a> (Comparar planos)</p>
+
+{% endblock %}
